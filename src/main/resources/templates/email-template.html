@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <meta charset="UTF-8">
+    <title>NotifyX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f4f6f8;
+            font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            padding: 30px 0;
+        }
+
+        .email-card {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 26px;
+            font-weight: 600;
+        }
+
+        .content {
+            padding: 30px;
+            color: #374151;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .content h2 {
+            margin-top: 0;
+            color: #111827;
+            font-size: 20px;
+        }
+
+        .message-box {
+            background-color: #f9fafb;
+            border-left: 4px solid #4f46e5;
+            padding: 16px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #4f46e5;
+            color: #ffffff !important;
+            padding: 12px 26px;
+            font-size: 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer {
+            background-color: #f9fafb;
+            text-align: center;
+            padding: 18px;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .footer a {
+            color: #4f46e5;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="email-card">
+
+        <!-- Header -->
+        <div class="header">
+            <h1>PulseNotify</h1>
+            <p>Smart Notifications. Delivered.</p>
+        </div>
+
+        <!-- Body -->
+        <div class="content">
+            <h2>Hello 👋</h2>
+
+            <p>
+                You have a new notification from <b>PulseNotify</b>.
+            </p>
+
+            <div class="message-box">
+                <p th:text="${message}">
+                    This is your notification message.
+                </p>
+            </div>
+
+            <!-- Optional Button -->
+            <div class="button-container" th:if="${actionUrl != null}">
+                <a class="btn" th:href="${actionUrl}">
+                    View Details
+                </a>
+            </div>
+
+            <p>
+                If you have any questions, feel free to reply to this email.
+            </p>
+
+            <p>
+                Regards,<br>
+                <b>PulseNotify Team</b>
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            © 2026 PulseNotify · All rights reserved<br>
+            <a href="#">Unsubscribe</a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
