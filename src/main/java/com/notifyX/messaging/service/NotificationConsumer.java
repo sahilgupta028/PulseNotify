@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+import static com.notifyX.messaging.constant.RabbitMQConstant.*;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -23,7 +25,7 @@ public class NotificationConsumer {
 
     private static final int MAX_RETRY = 3;
 
-    @RabbitListener(queues = RabbitMQConfig.QUEUE)
+    @RabbitListener(queues = QUEUE)
     public void consume(Long notificationId) {
 
         Notification notification = repository.findById(notificationId)
@@ -54,8 +56,8 @@ public class NotificationConsumer {
 
             // 💀 Send to DLQ
             rabbitTemplate.convertAndSend(
-                    RabbitMQConfig.DLQ_EXCHANGE,
-                    RabbitMQConfig.ROUTING_KEY,
+                    DLQ_EXCHANGE,
+                    ROUTING_KEY,
                     notification.getId()
             );
 
@@ -67,8 +69,8 @@ public class NotificationConsumer {
 
             // 🔁 Send to retry queue
             rabbitTemplate.convertAndSend(
-                    RabbitMQConfig.RETRY_EXCHANGE,
-                    RabbitMQConfig.ROUTING_KEY,
+                    RETRY_EXCHANGE,
+                    ROUTING_KEY,
                     notification.getId()
             );
 

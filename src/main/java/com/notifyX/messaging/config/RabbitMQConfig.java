@@ -4,18 +4,10 @@ import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import static com.notifyX.messaging.constant.RabbitMQConstant.*;
+
 @Configuration
 public class RabbitMQConfig {
-
-    public static final String EXCHANGE = "notify.exchange";
-    public static final String QUEUE = "notify.queue";
-    public static final String ROUTING_KEY = "notify.key";
-
-    public static final String RETRY_EXCHANGE = "notify.retry.exchange";
-    public static final String RETRY_QUEUE = "notify.retry.queue";
-
-    public static final String DLQ_EXCHANGE = "notify.dlq.exchange";
-    public static final String DLQ_QUEUE = "notify.dlq.queue";
 
     @Bean
     DirectExchange exchange() {

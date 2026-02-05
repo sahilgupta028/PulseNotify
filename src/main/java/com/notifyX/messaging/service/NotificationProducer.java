@@ -12,6 +12,9 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 
+import static com.notifyX.messaging.constant.RabbitMQConstant.EXCHANGE;
+import static com.notifyX.messaging.constant.RabbitMQConstant.ROUTING_KEY;
+
 @Component
 @RequiredArgsConstructor
 public class NotificationProducer {
@@ -36,8 +39,8 @@ public class NotificationProducer {
 
         // ✅ Send Long ID to RabbitMQ
         rabbitTemplate.convertAndSend(
-                RabbitMQConfig.EXCHANGE,
-                RabbitMQConfig.ROUTING_KEY,   // IMPORTANT (not queue name)
+                EXCHANGE,
+                ROUTING_KEY,   // IMPORTANT (not queue name)
                 saved.getId()
         );
     }

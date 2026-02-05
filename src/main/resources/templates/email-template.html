@@ -1,98 +1,117 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>NotifyX</title>
+    <title>PulseNotify</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #f4f6f8;
+            background-color: #f1f5f9;
             font-family: 'Segoe UI', Roboto, Arial, sans-serif;
         }
 
         .container {
             width: 100%;
-            padding: 30px 0;
+            padding: 40px 0;
         }
 
         .email-card {
-            max-width: 600px;
+            max-width: 620px;
             margin: auto;
             background-color: #ffffff;
-            border-radius: 10px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
+        /* Header */
         .header {
-            background: linear-gradient(135deg, #4f46e5, #6366f1);
+            background: linear-gradient(135deg, #4338ca, #6366f1);
             color: #ffffff;
-            padding: 24px;
+            padding: 28px;
             text-align: center;
         }
 
         .header h1 {
             margin: 0;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
+        .header p {
+            margin: 8px 0 0;
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        /* Content */
         .content {
-            padding: 30px;
+            padding: 36px 32px;
             color: #374151;
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.75;
         }
 
-        .content h2 {
-            margin-top: 0;
+        .content p {
+            margin: 0 0 16px;
+        }
+
+        .intro {
+            font-size: 16px;
             color: #111827;
-            font-size: 20px;
         }
 
+        /* Message Box */
         .message-box {
-            background-color: #f9fafb;
-            border-left: 4px solid #4f46e5;
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 6px;
+            background-color: #f8fafc;
+            border-left: 5px solid #6366f1;
+            padding: 18px 20px;
+            margin: 24px 0;
+            border-radius: 8px;
+            color: #1f2937;
         }
 
+        /* Button */
         .button-container {
             text-align: center;
-            margin: 30px 0;
+            margin: 32px 0;
         }
 
         .btn {
             display: inline-block;
             background-color: #4f46e5;
             color: #ffffff !important;
-            padding: 12px 26px;
+            padding: 13px 30px;
             font-size: 14px;
-            border-radius: 6px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            letter-spacing: 0.3px;
         }
 
+        /* Footer */
         .footer {
-            background-color: #f9fafb;
+            background-color: #f8fafc;
             text-align: center;
-            padding: 18px;
+            padding: 20px;
             font-size: 12px;
             color: #6b7280;
+            border-top: 1px solid #e5e7eb;
         }
 
         .footer a {
             color: #4f46e5;
             text-decoration: none;
+            font-weight: 500;
         }
 
         @media (max-width: 600px) {
             .content {
-                padding: 20px;
+                padding: 24px;
             }
         }
     </style>
@@ -110,19 +129,23 @@
 
         <!-- Body -->
         <div class="content">
-            <h2>Hello 👋</h2>
-
-            <p>
-                You have a new notification from <b>PulseNotify</b>.
+            <p class="intro">
+                Hello,
             </p>
 
+            <p>
+                You’ve received a new notification from <strong>PulseNotify</strong>.
+                Please find the details below.
+            </p>
+
+            <!-- Message -->
             <div class="message-box">
-                <p th:text="${message}">
+                <div th:utext="${#strings.replace(message, '\n', '<br/>')}">
                     This is your notification message.
-                </p>
+                </div>
             </div>
 
-            <!-- Optional Button -->
+            <!-- Optional CTA -->
             <div class="button-container" th:if="${actionUrl != null}">
                 <a class="btn" th:href="${actionUrl}">
                     View Details
@@ -130,12 +153,13 @@
             </div>
 
             <p>
-                If you have any questions, feel free to reply to this email.
+                If you have any questions or believe this message was sent by mistake,
+                you can safely reply to this email for assistance.
             </p>
 
             <p>
-                Regards,<br>
-                <b>PulseNotify Team</b>
+                Kind regards,<br>
+                <strong>PulseNotify Team</strong>
             </p>
         </div>
 
